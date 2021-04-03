@@ -5,5 +5,7 @@
 #include "mainwindow.h"
 
 
-QImage usefilters (QImage input, bool filterType);
+QImage calculate(QImage, int, int, int, bool);
+int* calcSum(int, int,int, int, QImage, bool);
+QImage usefilters (QImage, bool, int);
 #endif // FILTERS_H

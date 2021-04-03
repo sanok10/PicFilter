@@ -4,8 +4,6 @@
 #include <QString>
 #include "filters.h"
 
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -40,7 +38,7 @@ void MainWindow::on_goBttn_clicked()
 {
     if (ui->SRfilterBttn->isChecked() != false || ui->adFilterBttn->isChecked() != false)
     {
-        ::picture = usefilters(picture, ::filterType);//применяем фильтр
+        ::picture = usefilters(picture, ::filterType, ui->fildSizeSlider->value()); //применяем фильтр
         ui->label_5->setText("Готово!");
     }
     else
@@ -52,11 +50,18 @@ void MainWindow::on_goBttn_clicked()
 
 void MainWindow::on_SRfilterBttn_clicked()
 {
-    filterType = false;
+    ::filterType = false;
     //выбран среднеквадратический фильтр
 }
 
 void MainWindow::on_adFilterBttn_clicked()
 {
+    ::filterType = true;
     //выбран адаптивный фильтр
+}
+
+void MainWindow::on_fildSizeSlider_rangeChanged(int min, int max)
+{
+
+    ui->label_4->setText(QString(ui->fildSizeSlider->value()));
 }

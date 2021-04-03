@@ -28,6 +28,8 @@ private slots:
 
     void on_adFilterBttn_clicked();
 
+    void on_fildSizeSlider_rangeChanged(int min, int max);
+
 private:
     Ui::MainWindow *ui;
 };
