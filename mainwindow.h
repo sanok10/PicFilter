@@ -30,6 +30,8 @@ private slots:
 
     void on_fildSizeSlider_rangeChanged(int min, int max);
 
+    void on_radioButton_pressed();
+
 private:
     Ui::MainWindow *ui;
 };

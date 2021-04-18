@@ -59,19 +59,6 @@
      <string>Среднеарифметический фильтр</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="adFilterBttn">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>780</y>
-      <width>201</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Адаптивный фильтр</string>
-    </property>
-   </widget>
    <widget class="QSlider" name="fildSizeSlider">
     <property name="geometry">
      <rect>
@@ -123,7 +110,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Введите путь к исходному файлу</string>
+     <string>W:\1yceba\lastsemen\sample.bmp</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_2">
@@ -136,7 +123,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Введите путь сохранения</string>
+     <string>W:\1yceba\lastsemen\Resultsample.bmp</string>
     </property>
    </widget>
    <widget class="QPushButton" name="goBttn">
@@ -241,6 +228,19 @@
     </property>
     <property name="text">
      <string>Не допускать четных значений!</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>780</y>
+      <width>211</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Адаптивный усредняющий</string>
     </property>
    </widget>
   </widget>

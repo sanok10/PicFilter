@@ -36,9 +36,14 @@ void MainWindow::on_saveBttn_clicked()
 
 void MainWindow::on_goBttn_clicked()
 {
-    if (ui->SRfilterBttn->isChecked() != false || ui->adFilterBttn->isChecked() != false)
+    ui->label_5->setText("Выполняется");
+    if (ui->SRfilterBttn->isChecked() != false || ui->radioButton->isChecked() != false)
     {
-        ::picture = usefilters(picture, ::filterType, ui->fildSizeSlider->value()); //применяем фильтр
+        ::picture = usefilters(::picture, ::filterType, ui->fildSizeSlider->value()); //применяем фильтр
+        ::picture.save(ui->lineEdit_2->text()); // сохраняем картинку по пути из 2 окна
+        QPixmap pixmap2(ui->lineEdit_2->text()); //создаем 2 пиксмап
+        ui->label->setPixmap(pixmap2);      //натягиваем сову на глобус
+        ui->label->show();                 //
         ui->label_5->setText("Готово!");
     }
     else
@@ -48,15 +53,9 @@ void MainWindow::on_goBttn_clicked()
 }
 
 
-void MainWindow::on_SRfilterBttn_clicked()
-{
-    ::filterType = false;
-    //выбран среднеквадратический фильтр
-}
-
 void MainWindow::on_adFilterBttn_clicked()
 {
-    ::filterType = true;
+    ::filterType = false;
     //выбран адаптивный фильтр
 }
 
@@ -64,4 +63,21 @@ void MainWindow::on_fildSizeSlider_rangeChanged(int min, int max)
 {
 
     ui->label_4->setText(QString(ui->fildSizeSlider->value()));
+}
+
+void MainWindow::on_radioButton_clicked()
+{
+    ::filterType = true;
+    //выбран адаптивный усредняющий фильтр
+}
+
+void MainWindow::on_radioButton_pressed()
+{
+    ::filterType = true;
+    //выбран адаптивный усредняющий фильтр
+}
+
+void MainWindow::on_SRfilterBttn_clicked()
+{
+    ::filterType = false; //выбран среднеарифметический
 }
