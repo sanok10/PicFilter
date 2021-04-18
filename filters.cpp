@@ -15,6 +15,7 @@ QImage usefilters (QImage input, bool filterType, int filterSize)
     long R, G, B, RpGpB;
     float bright;
     QImage result;
+    result = input;
     for (int i = 0; i < input.width(); i++)
     {
         for (int ii = 0; ii < input.height(); ii++)
@@ -69,12 +70,12 @@ QImage usefilters (QImage input, bool filterType, int filterSize)
                        B = 255;
                    }
                }
-               input.setPixel(i, ii, qRgb(R, G, B)); //устанавливаем цвет пикселя перепутаны i и j
+               result.setPixel(i, ii, qRgb(R, G, B)); //устанавливаем цвет пикселя
 
             //result = calculate(input, filterSize, i, ii, filterType);
         }
     }
-    result = input;
+    //result = input;
     return result;
 }
 
@@ -113,7 +114,7 @@ float calculate(QImage input, int start, int i, int j, bool filterType) // фу�
     }
     if (filterType == false) // если фильтр среднеарифметический
     {
-        bright = sum[0] / (sum[1]*3); //вычисляем среднюю яркость области
+        bright = sum[0] / (sum[1]); //вычисляем среднюю яркость области*3
     }
     else //если фильр среднеквадратичный
     {
@@ -149,17 +150,18 @@ float* calcSum(float *sumArr, int startPosI,int startPosJ, int start, QImage inp
     }
     for (int i2 = startPosI; i2 < high; i2++) // в зависимости от типа фильтра считаем по разному
         {
-            for (int j2 = startPosI; j2 <= widh; j2++)
+            for (int j2 = startPosJ; j2 <= widh; j2++)
                 {
+                  sumArr[1] = (high -startPosI)*(widh-startPosJ); // размер области
                   QColor RGB(input.pixelColor(i2,j2));
                   float r = RGB.red();
                   float g = RGB.green();
                   float b = RGB.blue();
-                if (filterType == false)
+                if (filterType == false) //среднеарифметический
                 {
                     sumArr[0] += (r + g + b)/3; // считаем яркость пикселя и прибавляем ее к сумме яркостей
                 }
-                   else if (filterType == true)
+                   else if (filterType == true) //среднеквадратичный
                   {
                        //защита от нулевых значений
                     //float r=1,g=1,b=1;
@@ -186,8 +188,9 @@ float* calcSum(float *sumArr, int startPosI,int startPosJ, int start, QImage inp
                     }
                   }
                 }
+
         }
-sumArr[1] = high*widh; // размер области
+
 //sumArr[0] = sumArr[0]/sumArr[1]; //получаем среднюю яркость области
 return sumArr;
 
