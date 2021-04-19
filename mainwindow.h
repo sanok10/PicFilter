@@ -30,7 +30,7 @@ private slots:
 
     void on_fildSizeSlider_rangeChanged(int min, int max);
 
-    void on_label_linkActivated(const QString &link);
+    void on_radioButton_pressed();
 
 private:
     Ui::MainWindow *ui;
