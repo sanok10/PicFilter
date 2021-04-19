@@ -22,7 +22,7 @@ QImage usefilters (QImage input, bool filterType, int filterSize)
         {
             bright = calculate(input, filterSize, i, ii, filterType);
             //приводим яркость пикселя к яркости области
-            QColor RGB(input.pixelColor(i,ii)); //перепутаны i и j
+            QColor RGB(input.pixelColor(i,ii));
             R = RGB.red();
             G = RGB.green();
             B = RGB.blue();
@@ -114,11 +114,11 @@ float calculate(QImage input, int start, int i, int j, bool filterType) // фу�
     }
     if (filterType == false) // если фильтр среднеарифметический
     {
-        bright = sum[0] / (sum[1]); //вычисляем среднюю яркость области*3
+        bright = sum[0] / (sum[1]); //вычисляем среднюю яркость области||*3
     }
     else //если фильр среднеквадратичный
     {
-        bright = pow(sum[0], (sum[1]/3));//вычисляем среднюю яркость области
+        bright = (pow(sum[0], (1/sum[1])))/3;//вычисляем среднюю яркость области||/3
       if (bright > 255) //на всякий случай
       {
         bright = 255;
@@ -180,12 +180,8 @@ float* calcSum(float *sumArr, int startPosI,int startPosJ, int start, QImage inp
                         {
                            b = RGB.blue() + 1;
                         }
-                         sumArr[0] *= (g+r+b)/3;
                     }
-                    else
-                    {
-                       sumArr[0] *= (r+g+b)/3;
-                    }
+                    sumArr[0] *= (g+r+b)/3;
                   }
                 }
 
